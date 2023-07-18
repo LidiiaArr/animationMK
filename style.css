@@ -1,0 +1,194 @@
+body {
+    margin: 0; 
+    /*занулить марджины браузера*/   
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* флексами выстроить элементы сверху вниз */
+}
+
+h1 {
+    font-family: sans-serif;
+    margin-bottom: 80px;
+    margin-top: 80px;
+}
+
+.progress-body {
+    width: 600px;
+    height: 50px;
+    background-color: rgb(246, 246, 246);
+    border: 4px solid silver;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.progress-line {
+    background-color: lightgreen;
+    border-radius: 50px;
+    height: 50px;
+    width: 50%;
+    /* проценты это всегда размеры от родителя */
+    transition: width 2s 0.3s ease-in-out,
+    background-color 1s;
+}
+/* для того чтобы после убирания мышки с элемента плавно менялись стили 
+нужно в классе элемента прописать transition */
+
+.progress-line:hover {
+    width: 100%;
+    background-color: #d589f6; 
+/*  transition-duration: 2s;
+    transition-delay: 0.3s;
+    transition-timing-function: easy-in-out;
+    transition-property: width; */
+    transition: width 2s 0.3s ease-in-out,
+    background-color 1s;
+}
+            /* TRANSITION */
+/* свойство transition обычно используется для простых анимаций */
+/* transition-duration: 2s; продолжительность в секундах */
+/* transition-delay: 1s; задержка в секундах */
+/* transition-timing-function */
+/* временная функция - наша анимация может развиваться линейно */
+/* то есть на всей продолжительности анимации она будет выполняться с  */
+/* одинаковой скоростью */
+/* https://matthewlein.com/tools/ceaser сайт обьяснялка */
+/* transition-property: width; теперь цвет изменяется моментально и 
+transition только для ширины*/
+/* существует краткая запись 
+transition: width 2s 0.3s easy-in-out;
+если чего то нет пропускаем */
+/* если нужно задать разные анимации для свойств одного элемента 
+перечисляем их через запятую*/
+
+            /* ANIMATION AND KEYFRAMES */
+/* ключевые кадры keyframes описывают всю нашу анимацию 
+лучше объявлять в конце 
+ключевые кадры это точки в которых происходят изменения значений свойств 
+можно указать 0% можно from и 100% или to
+в to указываем конечное состояние элемента*/
+
+@keyframes myAnimation {
+    from {
+        width: 50%;
+        background-color: rgb(144, 158, 238);
+    }
+    57% {
+        background-color: lightgreen
+    }
+    58% {
+        background-color: #d589f6;
+    }
+    to {
+        width: 100%;
+        background-color: #d589f6;
+    }
+}
+
+
+
+.progress-body2 {
+    width: 600px;
+    height: 50px;
+    background-color: rgb(246, 246, 246);
+    border: 4px solid silver;
+    border-radius: 50px;
+    padding: 5px;
+}
+.progress-line2 {
+    background-color: lightgreen;
+    border-radius: 50px;
+    height: 50px;
+    width: 50%;
+}
+
+.progress-line2:hover {
+    animation-name: myAnimation;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-delay: 0.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+}
+/* animation-iteration-count: 1;  то сколько раз нужно повторять анимацию*/
+/* animation-direction: ; направление в котором будут 
+проигрываться кадры для анимации есть reverse */
+/* animation-fill-mode: назаначить стили из первого ключевого кадра 
+вначале анимации (когда она не проигрывается и стили из последнего кадра 
+в конце (когда анимации  не проигрывается), либо во время задержки если есть 
+animation-delay какие свойства будет получать анимация 
+animation-fill-mode: backwards устанавливает стили из первого ключевого кадра 
+когда анимация не проигрывается(когда есть задержка - стили для задержки)
+animation-fill-mode: forwards во время задержки не применяются стили 
+из первого ключевого кадра применяются стили написанные для этого 
+элемента по умолчанию, наша анимация проигралась и остановилась на 
+последнем ключевом кадре
+animation-fill-mode: both применять стили до начала анимации с первого ключевого 
+кадра и стили из последнего ключевого кадра в конце*/
+
+.progress-line2 {
+    background-color: lightgreen;
+    border-radius: 50px;
+    height: 50px;
+    width: 50%;
+
+    animation-name: myAnimation;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-delay: 0.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+}
+
+/* Если анимацию перенести в обычный класс элемента то анимация будет применяться при 
+презагрузке страницы*/
+
+.progress-line2:hover {
+    animation-play-state: paused;
+}
+
+/* теперь при наведении будет останавливать нашу анимацию */
+
+.progress-line2 {
+    background-color: lightgreen;
+    border-radius: 50px;
+    height: 50px;
+    width: 50%;
+
+/*  animation-name: myAnimation;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-delay: 0.5s;
+    animation-iteration-count: 2;
+    animation-direction: normal;
+    animation-fill-mode: both; */
+    animation: myAnimation 2s linear 0.5s 2 normal both
+}
+
+/* для animation есть краткая запись если какоето свойства нам не нужно его
+пропускаем*/
+
+                /* ПСЕВДОЭЛЕМЕНТ */
+.progress-body3 {
+    width: 600px;
+    height: 50px;
+    background-color: rgb(246, 246, 246);
+    border: 4px solid silver;
+    border-radius: 50px;
+    padding: 5px;
+}                
+.progress-body3::before {
+    content: " ";
+    display: inline-block;
+    background-color: lightgreen;
+    border-radius: 50px;
+    height: 50px;
+    width: 50%;
+    animation: myAnimation 2s linear 0.5s 2 normal both
+}
+
+/* анимации не поддается свойства display тк не промежуточных значений */
